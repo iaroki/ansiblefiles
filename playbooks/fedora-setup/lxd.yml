@@ -1,0 +1,25 @@
+---
+- hosts: stormey
+#  connection: local
+  tasks:
+    - name: Enable copr
+      command: dnf copr enable ganto/lxd -y
+
+    - name: Install LXD tools
+      dnf: name={{item}} state=latest
+      with_items:
+        - lxd
+        - lxd-client
+        - lxd-tools
+
+    - name: Add user to lxd group
+      user: name=hostmorke groups=lxd append=yes
+
+    - name: Set subuid/subgid
+      command: echo "root:1000000:65536" | tee -a /etc/subuid /etc/subgid
+
+    - name: Disable SELinux
+      selinux: policy=targeted state=permissive
+
+    - name: Start LXD service
+      systemd: name=lxd.service state=started
