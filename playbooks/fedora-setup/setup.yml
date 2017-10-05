@@ -1,18 +1,64 @@
 ---
 - hosts: stormey
   tasks:
-    - name: Install vim
-      dnf: name=vim state=latest
+    - name: Install basic tools
+      dnf: name={{item}} state=installed
+      with_items:
+        - vim
+        - tmux
+        - git
+        - dnf-plugins-core
+        - libselinux-python
 
-    - name: Install tmux
-      dnf: name=tmux state=latest
-
-    - name: Install git
-      dnf: name=git state=latest
-
-    - name: Install Docker
-      dnf: name=dnf-plugins-core state=latest
+    - name: Enable Docker repo
       command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-      dnf: name=docker-ce state=latest
+      
+    - name: Install Docker  
+      dnf: name=docker-ce state=installed
 
-    - name: Install LXD
+    - name: Add user to docker group
+      user: name=hostmorke groups=docker append=yes
+
+    - name: Enable copr LXD
+      command: dnf copr enable ganto/lxd -y
+
+    - name: Enable copr LXC
+      command: dnf copr enable ganto/lxc -y
+
+    - name: Install LXD tools
+      dnf: name={{item}} state=installed
+      with_items:
+        - lxd
+        - lxd-client
+        - lxd-tools
+
+    - name: Add user to lxd group
+      user: name=hostmorke groups=lxd append=yes
+
+    - name: Set subuid
+      lineinfile: path=/etc/subuid line="root:1000000:65536"
+
+    - name: Set subgid
+      lineinfile: path=/etc/subgid line="root:1000000:65536"
+
+    - name: Enable Virtualbox repo
+      command: dnf config-manager --add-repo http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
+
+    - name: Install Virtualbox
+      dnf: name=VirtualBox-5.1 state=installed
+
+    - name: Enable RPMFusion
+      dnf: name={{item}} state=installed
+      with_items:
+        - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-26.noarch.rpm
+        - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-26.noarch.rpm
+
+    - name: Install media
+      dnf: name={{item}} state=installed
+      with_items:
+        - mpv
+        - cmus
+        - ffmpeg
+        - obs-studio
+        - rtmpdump
+        - unrar
