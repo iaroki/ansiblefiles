@@ -1,0 +1,42 @@
+---
+- hosts: proxy-server
+  tasks:
+    - name: Update system
+      yum: name=* state=latest
+
+    - name: Install basic tools
+      yum: name={{item}} state=installed
+      with_items:
+        - vim
+        - tmux
+        - git
+        - epel-release
+        - libselinux-python
+        - iptables-services
+
+    - name: Disable SELinux
+      selinux: state=disabled
+
+    - name: Install 3proxy
+      yum: name=3proxy state=installed
+
+    - name: Create 3proxy config directory
+      file: path=/etc/3proxy mode=0755 state=directory
+
+    - name: Copy configs
+      copy: src={{ item.src }} dest={{ item.dest }}
+      with_items:
+        - { src: 'files/3proxy.cfg', dest: '/etc/3proxy.cfg' }
+        - { src: 'files/ds.txt', dest: '/etc/3proxy/ds.txt' }
+        - { src: 'files/askod.txt', dest: '/etc/3proxy/askod.txt' }
+        - { src: 'files/allowds.txt', dest: '/etc/3proxy/allowds.txt' }
+        - { src: 'files/allowaskod.txt', dest: '/etc/3proxy/allowaskod.txt' }
+
+    - name: Start and enable 3proxy service
+      systemd: name=3proxy state=started enabled=yes
+
+    - name: Enable ip_forward
+      sysctl: name=net.ipv4.ip_forward value=1 sysctl_set=yes state=present reload=yes
+
+    - name: Setup iptables
+      iptables:
