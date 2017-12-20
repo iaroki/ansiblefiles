@@ -1,0 +1,40 @@
+---
+- hosts: localhost
+  connection: local
+  become: yes
+  tasks:
+    - name: Update system
+      xbps: upgrade=yes update_cache=yes
+
+    - name: Install essential tools
+      xbps: name={{item}} state=present
+      with_items:
+        - vim
+        - git
+        - scrot
+        - tmux
+        - python3
+        - bash-completion
+        - void-repo-nonfree
+    
+    - name: Install Docker
+      xbps: name=docker state=present
+
+    - name: Add user to docker group
+      user: name=iaroki groups=docker append=yes
+
+    - name: Install VirtualBox
+      xbps: name=virtualbox-ose state=present
+
+    - name: Install Vagrant
+      xbps: name=vagrant state=present
+
+    - name: Install media
+      xbps: name={{item}} state=present
+      with_items:
+        - mpv
+        - cmus
+        - ffmpeg
+        - rtmpdump
+        - unrar
+        
