@@ -6,5 +6,5 @@
   yum: name=nginx state=present
 
 - name: Copy index.html
-  copy: src=files/index.html dest=/usr/share/nginx/html/ mode=0644
+  copy: src=index.html dest=/usr/share/nginx/html/ mode=0644
 
