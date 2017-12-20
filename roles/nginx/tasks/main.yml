@@ -4,6 +4,11 @@
 
 - name: Install Nginx web server
   yum: name=nginx state=present
+  notify:
+    - Start Nginx
+
+- name: Enable Nginx
+  systemd: name=nginx enabled=yes
 
 - name: Copy index.html
   copy: src=index.html dest=/usr/share/nginx/html/ mode=0644
