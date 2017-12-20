@@ -11,6 +11,7 @@
       with_items:
         - vim
         - git
+        - wget  
         - scrot
         - tmux
         - python3
