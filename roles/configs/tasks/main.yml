@@ -1,21 +1,13 @@
 ---
 - name: Clone dotfiles
-  - git:
-    repo: 'https://github.com/iaroki/dotfiles.git'
-    dest: ~/cfg
+  git: repo='https://github.com/iaroki/dotfiles.git' dest='~/cfg'
 
 - name: Copy .vimrc
-  - copy:
-    src: ~/cfg/.vimrc
-    dest: ~/.vimrc
+  copy: src='~/cfg/.vimrc' dest='~/.vimrc'
 
 - name: Copy .vim dir
-  - copy:
-    src: ~/cfg/.vim
-    dest: ~/.vim
+  copy: src='~/cfg/.vim' dest='~/.vim'
 
 - name: Copy fonts
-  - copy:
-    src: ~/cfg/.fonts
-    dest: ~/.fonts
+  copy: src='~/cfg/.fonts' dest='~/.fonts'
 
