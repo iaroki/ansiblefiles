@@ -13,6 +13,7 @@
         - git
         - tree
         - wget  
+        - htop
         - scrot
         - tmux
         - python3
