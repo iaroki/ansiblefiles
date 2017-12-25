@@ -1,0 +1,21 @@
+---
+- hosts: localhost
+  connection: local
+  tasks: 
+    - name: Pull Docker images
+      docker_image: name={{item}}
+      with_items:
+        - iaroki/zeal
+        - iaroki/chromium
+        - iaroki/iriverpla
+        - iaroki/sublime
+        - iaroki/qwordnotify
+        - iaroki/torproxy
+        - iaroki/conky
+        - iaroki/ring
+        - iaroki/obs
+        - iaroki/atom
+        - iaroki/popcorntime
+        - iaroki/thunderbird
+        - iaroki/vscode
+        - iaroki/pass
