@@ -16,6 +16,8 @@
         - htop
         - scrot
         - tmux
+        - gxkb
+        - dmenu
         - python3
         - bash-completion
         - void-repo-nonfree
