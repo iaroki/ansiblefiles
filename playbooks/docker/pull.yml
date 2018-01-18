@@ -5,17 +5,21 @@
     - name: Pull Docker images
       docker_image: name={{item}}
       with_items:
+        - iaroki/dwmbuild
+        - iaroki/irssi
+        - iaroki/hugo
+        - iaroki/libreoffice
+        - iaroki/teamviewer
+        - iaroki/transmission
+        - iaroki/wireshark
+        - iaroki/pelican
         - iaroki/zeal
         - iaroki/chromium
         - iaroki/iriverpla
         - iaroki/sublime
         - iaroki/qwordnotify
-        - iaroki/torproxy
         - iaroki/conky
-        - iaroki/ring
         - iaroki/obs
-        - iaroki/atom
         - iaroki/popcorntime
         - iaroki/thunderbird
-        - iaroki/vscode
         - iaroki/pass
