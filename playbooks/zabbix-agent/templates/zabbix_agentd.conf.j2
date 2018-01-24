@@ -146,7 +146,7 @@ ServerActive=172.17.0.103
 # Default:
 # Hostname=
 
-Hostname=Zabbix client
+Hostname={{ ansible_hostname }}
 
 ### Option: HostnameItem
 #	Item used for generating Hostname if it is undefined. Ignored if Hostname is defined.
