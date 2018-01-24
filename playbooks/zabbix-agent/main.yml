@@ -8,5 +8,8 @@
     - name: Install Zabbix Agent
       yum: name=zabbix-agent state=installed update_cache=yes
 
+    - name: Copy agent config
+      template: src=zabbix_agentd.conf.j2 dest=/etc/zabbix/zabbix_agentd.conf
+
     - name: Start Zabbix service
       systemd: name=zabbix-agent state=started enabled=yes
