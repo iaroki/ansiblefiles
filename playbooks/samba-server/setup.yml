@@ -29,6 +29,6 @@
     - name: Restart  SMB service
       systemd: name=smbd state=restarted enabled=yes
 
-    - name: Restart and enable NMB service
+    - name: Restart NMB service
       systemd: name=nmbd state=restarted enabled=yes
 
