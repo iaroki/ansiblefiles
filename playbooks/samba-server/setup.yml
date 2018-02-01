@@ -1,9 +1,7 @@
 ---
 - hosts: nas
+  become: yes
   tasks:
-    - name: Update system
-      apt: name=* update_cache=yes state=latest
-
     - name: Create users
       user: name={{item}} createhome=no shell=/usr/sbin/nologin
       with_items:
