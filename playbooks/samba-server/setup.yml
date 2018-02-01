@@ -1,0 +1,18 @@
+---
+- hosts: nas
+  tasks:
+    - name: Update system
+      apt: name=* state=latest
+
+    - name: Install SAMBA
+      apt: name=samba state=installed
+
+    - name: Copy config
+      copy: src=files/smb.cfg dest=/etc/samba/smb.cfg
+
+    - name: Restart  SMB service
+      systemd: name=smbd state=restarted enabled=yes
+
+    - name: Restart and enable NMB service
+      systemd: name=nmbd state=restarted enabled=yes
+
