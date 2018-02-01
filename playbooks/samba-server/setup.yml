@@ -24,7 +24,7 @@
         - {user: 'rmc', pass: '2014'}
 
     - name: Copy config
-      copy: src=files/smb.cfg dest=/etc/samba/smb.cfg
+      copy: src=files/smb.conf dest=/etc/samba/smb.conf
 
     - name: Restart  SMB service
       systemd: name=smbd state=restarted enabled=yes
