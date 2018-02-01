@@ -15,7 +15,7 @@
         - {path: '/mnt/storage/rmc', user: 'rmc'}
 
     - name: Install SAMBA
-      apt: name=samba state=installed
+      apt: name=samba update_cache=yes state=installed
 
     - name: Add users to SAMBA
       shell: '(echo {{ item.pass }}; echo {{ item.pass }}) | smbpasswd -s -a {{ item.user }}'
