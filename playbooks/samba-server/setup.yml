@@ -2,10 +2,28 @@
 - hosts: nas
   tasks:
     - name: Update system
-      apt: name=* state=latest
+      apt: name=* update_cache=yes state=latest
+
+    - name: Create users
+      user: name={{item}} createhome=no shell=/usr/sbin/nologin
+      with_items:
+        - pdbe
+        - rmc
+
+    - name: Create user dirs
+      file: name={{item.path}} owner={{item.user}} mode=0777 recurse=yes state=directory
+      with_items:
+        - {path: '/mnt/storage/pdbe', user: 'pdbe'}
+        - {path: '/mnt/storage/rmc', user: 'rmc'}
 
     - name: Install SAMBA
       apt: name=samba state=installed
+
+    - name: Add users to SAMBA
+      shell: '(echo {{ item.pass }}; echo {{ item.pass }}) | smbpasswd -s -a {{ item.user }}'
+      with_items:
+        - {user: 'pdbe', pass: '1'}
+        - {user: 'rmc', pass: '2014'}
 
     - name: Copy config
       copy: src=files/smb.cfg dest=/etc/samba/smb.cfg
