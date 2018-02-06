@@ -1,3 +1,4 @@
 ---
 - name: Remove docker images
-  docker_image: name=alpine state=absent force=yes
+  docker_image: name={{ item }} state=absent force=yes
+  with_items: image_list

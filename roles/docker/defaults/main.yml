@@ -1,0 +1,4 @@
+---
+image_list:
+  - alpine:latest
+  - alpine:edge

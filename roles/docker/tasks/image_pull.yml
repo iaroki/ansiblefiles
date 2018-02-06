@@ -1,3 +1,4 @@
 ---
 - name: Pull docker images
-  docker_image: name=alpine state=present
+  docker_image: name={{ item }} state=present
+  with_items: image_list
