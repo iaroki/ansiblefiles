@@ -1,4 +1,19 @@
 ---
 image_list:
-  - "alpine:latest"
-  - "alpine:edge"
+  - iaroki/dwmbuild
+  - iaroki/irssi
+  - iaroki/libreoffice
+  - iaroki/teamviewer
+  - iaroki/transmission
+  - iaroki/wireshark
+  - iaroki/pelican
+  - iaroki/zeal
+  - iaroki/chromium
+  - iaroki/iriverpla
+  - iaroki/sublime
+  - iaroki/qwordnotify
+  - iaroki/obs
+  - iaroki/popcorntime
+  - iaroki/thunderbird
+  - iaroki/pass
+  - iaroki/wine
