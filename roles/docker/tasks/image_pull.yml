@@ -1,4 +1,4 @@
 ---
 - name: Pull docker images
   docker_image: name={{ item }} state=present
-  with_items: image_list
+  with_items: "{{ image_list }}"

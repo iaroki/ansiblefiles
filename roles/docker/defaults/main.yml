@@ -1,4 +1,4 @@
 ---
 image_list:
-  - alpine:latest
-  - alpine:edge
+  - "alpine:latest"
+  - "alpine:edge"
