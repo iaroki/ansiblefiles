@@ -1,0 +1,6 @@
+---
+- name: Including image_remove.yml
+  import_tasks: image_remove.yml
+
+- name: Including image_pull.yml
+  import_tasks: image_pull.yml
