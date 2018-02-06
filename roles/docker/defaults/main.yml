@@ -8,7 +8,7 @@ image_list:
   - iaroki/wireshark
   - iaroki/pelican
   - iaroki/zeal
-  - iaroki/chromium
+  - iaroki/chrome
   - iaroki/iriverpla
   - iaroki/sublime
   - iaroki/qwordnotify
