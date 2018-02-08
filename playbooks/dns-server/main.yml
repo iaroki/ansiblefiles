@@ -1,5 +1,7 @@
 ---
 - hosts: dns
+  vars:
+    zone_file: kappa.zone
   tasks:
 
     - name: Install BIND
@@ -12,7 +14,7 @@
       template: src=named.conf.j2 dest=/etc/named.conf
 
     - name: Copy ZONE file
-      template: src=kappa.zone.j2 dest=/var/named/kappa.zone
+      template: src={{ zone_file }}.j2 dest=/var/named/{{ zone_file }}
 
     - name: Start and enable BIND
       systemd: name=named state=started enabled=yes
