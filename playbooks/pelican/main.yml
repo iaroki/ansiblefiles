@@ -31,8 +31,8 @@
     - name: Copy Pelican configs
       template: src={{ item.src }} dest={{ item.dest }}
       with_items:
-        - { src: 'pelicanconf.py.j2', dest: '{{ blog_path }}'/pelicanconf.py }
-        - { src: 'publishconf.py.j2', dest: '{{ blog_path }}'/publishconf.py }
+        - { src: "pelicanconf.py.j2", dest: "{{ blog_path }}"/pelicanconf.py }
+        - { src: "publishconf.py.j2", dest: "{{ blog_path }}"/publishconf.py }
 
     - name: Copy test article
       copy: src=files/first-post.md dest={{ blog_content }}/first-post.md
