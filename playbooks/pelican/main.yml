@@ -1,0 +1,12 @@
+---
+- hosts: pelican
+  vars:
+    blog_author: kappa
+    blog_name: Kappa's blog
+    blog_url: http://blog.kappa
+    blog_path: /var/www/blog/
+    blog_content: /var/www/blog/content/
+    blog_output: /var/www/blog/output/
+  tasks:
+    
+    - name: Enable EPEL repo

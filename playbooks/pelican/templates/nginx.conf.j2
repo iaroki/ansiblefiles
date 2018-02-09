@@ -38,7 +38,7 @@ http {
     server {
         listen       80 default_server;
         server_name  _;
-        root         /var/www/blog/output/;
+        root         {{ blog_output }};
 
         # Load configuration files for the default server block.
         include /etc/nginx/default.d/*.conf;
