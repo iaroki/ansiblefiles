@@ -16,7 +16,7 @@
       yum: name=python34 state=installed update_cache=yes
 
     - name: Install Pelican with PIP
-      pip: name={{ item }} state=present
+      pip: name={{ item }} state=present executable=pip3
       with_items:
         - pelican
         - markdown
