@@ -13,7 +13,7 @@
       yum: name=epel-release state=installed
 
     - name: Install Python 3
-      yum: name=python34 state=installed
+      yum: name=python34 state=installed update_cache=yes
 
     - name: Install Pelican with PIP
       pip: name={{ item }} state=present
@@ -24,15 +24,15 @@
     - name: Create blog directories
       file: path={{ item }} state=directory mode=0755
       with_items:
-        - {{ blog_path }}
-        - {{ blog_content }}
-        - {{ blog_output }}
+        - "{{ blog_path }}"
+        - "{{ blog_content }}"
+        - "{{ blog_output }}"
 
     - name: Copy Pelican configs
       template: src={{ item.src }} dest={{ item.dest }}
       with_items:
-        - { src: "pelicanconf.py.j2", dest: "{{ blog_path }}"/pelicanconf.py }
-        - { src: "publishconf.py.j2", dest: "{{ blog_path }}"/publishconf.py }
+        - { src: 'pelicanconf.py.j2', dest: '"{{ blog_path }}"/pelicanconf.py' }
+        - { src: 'publishconf.py.j2', dest: '"{{ blog_path }}"/publishconf.py' }
 
     - name: Copy test article
       copy: src=files/first-post.md dest={{ blog_content }}/first-post.md
@@ -40,7 +40,7 @@
     - name: Generate static pages
       shell: pelican content
       args:
-        chdir: {{ blog_path }}
+        chdir: "{{ blog_path }}"
 
     - name: Install Nginx
       yum: name=nginx state=installed
