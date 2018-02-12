@@ -14,8 +14,11 @@
     - name: Create user
       user: name=git state=present
 
+    - name: Create Gitea working directory
+      file: path=/home/git/gitea state=directory mode=0644 owner=git
+
     - name: Install Gitea
-      get_url: url=https://dl.gitea.io/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-linux-amd64 dest=/home/git/gitea mode=0744 owner=git
+      get_url: url=https://dl.gitea.io/gitea/{{ gitea_version }}/gitea-{{ gitea_version }}-linux-amd64 dest=/home/git/gitea/gitea mode=0744 owner=git
 
     - name: Copy systemd unit file
       copy: src=files/gitea.service dest=/etc/systemd/system/gitea.service
