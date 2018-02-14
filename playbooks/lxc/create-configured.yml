@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Create configured container
+      lxc_container:
+        name: ubuntu-configured
+        template: download
+        template_options: -d ubuntu -r xenial -a amd64
+        state: started
+        container_config:
+          - "lxc.aa_profile=unconfined"
+          - "lxc.cgroup.devices.allow=a *:* rmw"
