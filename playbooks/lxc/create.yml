@@ -1,0 +1,10 @@
+---
+- hosts: localhost
+  become: yes
+  tasks:
+    - name: Create ubuntu container
+      lxc_container:
+        name: ubuntu-test 
+        state: stopped 
+        template: download 
+        template_options: -d ubuntu -r xenial -a amd64
