@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Stop all containers
+      lxc_container:
+        name: "{{ item }}"
+        state: stopped
+      with_items:
+        - ubuntu
+        - ubuntu-test
+        - ubuntu-started
+        - ubuntu-configured
