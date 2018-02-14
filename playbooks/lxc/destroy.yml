@@ -1,0 +1,12 @@
+---
+- hosts: localhost
+  tasks:
+    - name: Destroy all containers
+      lxc_container:
+        name: "{{ item }}"
+        state: absent
+      with_items:
+        - ubuntu
+        - ubuntu-test
+        - ubuntu-started
+        - ubuntu-configured 
