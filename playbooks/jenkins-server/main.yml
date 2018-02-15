@@ -1,7 +1,7 @@
 ---
 - hosts: jenkins
   vars:
-    jenkins_ulr: jenkins.kappa
+    jenkins_url: jenkins.kappa
   tasks:
     - name: Install OpenJDK
       yum: name=java-1.8.0-openjdk state=installed update_cache=yes
