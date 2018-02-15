@@ -1,0 +1,31 @@
+---
+- hosts: jenkins
+  vars:
+    jenkins_ulr: jenkins.kappa
+  tasks:
+    - name: Install OpenJDK
+      yum: name=java-1.8.0-openjdk state=installed update_cache=yes
+
+    - name: Add Jenkins repo
+      get_url: url=http://pkg.jenkins-ci.org/redhat/jenkins.repo dest=/etc/yum.repos.d/jenkins.repo
+
+    - name: Import Jenkins key
+      rpm_key: key=https://jenkins-ci.org/redhat/jenkins-ci.org.key state=present
+
+    - name: Install Jenkins
+      yum: name=jenkins state=installed update_cache=yes
+
+    - name: Start Jenkins
+      systemd: name=jenkins state=started enabled=yes
+
+    - name: Install EPEL
+      yum: name=epel-release state=installed
+
+    - name: Install Nginx
+      yum: name=nginx state=installed update_cache=yes
+
+    - name: Copy nginx.conf
+      template: src=nginx.conf.j2 dest=/etc/nginx/nginx.conf
+
+    - name: Start nginx
+      systemd: name=nginx state=started enabled=yes
