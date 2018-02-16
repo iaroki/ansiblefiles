@@ -1,0 +1,8 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Start container
+      lxd_container:
+        name: centos-web
+        state: started
