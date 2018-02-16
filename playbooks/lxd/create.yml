@@ -1,0 +1,16 @@
+---
+- hosts: localhost
+  connection: local
+  tasks:
+    - name: Create container
+      lxd_container:
+        name: centos-web
+        state: stopped
+        source:
+          type: image
+          mode: pull
+          server: https://images.linuxcontainers.org
+          protocol: lxd
+          alias: centos/7/amd64
+        profiles: ["default"]
+
