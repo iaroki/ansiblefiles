@@ -1,0 +1,33 @@
+---
+- hosts: localhost
+  connection: local
+  vars:
+    container_name: production
+    ip_address: 172.17.0.222
+  tasks:
+    - name: Create container
+      lxd_container:
+        name: "{{ container_name }}"
+        state: stopped
+        source:
+          type: image
+          mode: pull
+          server: https://images.linuxcontainers.org
+          protocol: lxd
+          alias: centos/7/amd64
+        profiles: ["default"]
+
+    - name: Attach to bridge
+      shell: lxc network attach docker0 {{ container_name }}
+
+    - name: Set IP address
+      template: src=ifcfg-eth0.j2 dest=/var/lib/lxd/containers/centos-www/rootfs/etc/sysconfig/network-scripts/ifcfg-eth0
+
+    - name: Set resolv.conf
+      copy: src=resolv.conf dest=/var/lib/lxd/containers/centos-www/rootfs/etc/resolv.conf
+
+    - name: Start container
+      lxd_container:
+        name: "{{ container_name }}"
+        state: started
+
