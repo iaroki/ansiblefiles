@@ -21,10 +21,10 @@
       shell: lxc network attach docker0 {{ container_name }}
 
     - name: Set IP address
-      template: src=ifcfg-eth0.j2 dest=/var/lib/lxd/containers/centos-www/rootfs/etc/sysconfig/network-scripts/ifcfg-eth0
+      template: src=files/ifcfg-eth0.j2 dest=/var/lib/lxd/containers/centos-www/rootfs/etc/sysconfig/network-scripts/ifcfg-eth0
 
     - name: Set resolv.conf
-      copy: src=resolv.conf dest=/var/lib/lxd/containers/centos-www/rootfs/etc/resolv.conf
+      copy: src=files/resolv.conf dest=/var/lib/lxd/containers/centos-www/rootfs/etc/resolv.conf
 
     - name: Start container
       lxd_container:
