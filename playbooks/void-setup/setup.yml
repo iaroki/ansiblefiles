@@ -34,6 +34,9 @@
     - name: Add user to VirtualBox group
       user: name=iaroki groups=vboxusers append=yes
 
+    - name: Install LXC
+      xbps: name=lxc state=present
+
     - name: Install Vagrant
       xbps: name=vagrant state=present
 
