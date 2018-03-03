@@ -28,6 +28,9 @@
     - name: Install Docker
       xbps: name=docker state=present
 
+    - name: Copy docker config
+      copy: src=/home/iaroki/dev/dotfiles/docker/daemon.json dest=/etc/docker/daemon.json remote_src=yes
+
     - name: Add user to docker group
       user: name=iaroki groups=docker append=yes
 
