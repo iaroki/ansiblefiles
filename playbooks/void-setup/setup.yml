@@ -26,6 +26,13 @@
     - name: Pull dotfiles
       git: repo=https://github.com/iaroki/dotfiles dest=/home/iaroki/dev
 
+    - name: Copy configs
+      copy: src={{item.src}} dest={{item.dest}} remote_src=yes
+      with_items:
+        - {src: '/home/iaroki/dev/dotfiles/.bashrc', dest: '/home/iaroki/.bashrc'}
+        - {src: '/home/iaroki/dev/dotfiles/.profile', dest: '/home/iaroki/.profile'}
+        - {src: '/home/iaroki/dev/dotfiles/.xinitrc', dest: '/home/iaroki/.xinitrc'}
+
     - name: Install Docker
       xbps: name=docker state=present
 
@@ -34,6 +41,14 @@
 
     - name: Add user to docker group
       user: name=iaroki groups=docker append=yes
+    
+    - name: Pull dwm src
+      git: repo=https://github.com/iaroki/dwm dest=/home/iaroki/dev
+
+    - name: Build dwm
+      shell: build.sh
+      args:
+        chdir: /home/iaroki/dev/dwm
 
     - name: Install VirtualBox
       xbps: name=virtualbox-ose state=present
