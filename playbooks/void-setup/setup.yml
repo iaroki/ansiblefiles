@@ -22,6 +22,9 @@
         - bash-completion
         - void-repo-nonfree
     
+    - name: Pull dotfiles
+      git: repo=https://github.com/iaroki/dotfiles dest=/home/iaroki/dev
+
     - name: Install Docker
       xbps: name=docker state=present
 
