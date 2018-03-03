@@ -31,6 +31,9 @@
     - name: Install VirtualBox
       xbps: name=virtualbox-ose state=present
 
+    - name: Add user to VirtualBox group
+      user: name=iaroki groups=vboxusers append=yes
+
     - name: Install Vagrant
       xbps: name=vagrant state=present
 
