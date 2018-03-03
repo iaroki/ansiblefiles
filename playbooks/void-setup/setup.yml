@@ -21,6 +21,7 @@
         - python3
         - bash-completion
         - void-repo-nonfree
+        - network-manager-applet
     
     - name: Pull dotfiles
       git: repo=https://github.com/iaroki/dotfiles dest=/home/iaroki/dev
