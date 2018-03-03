@@ -43,6 +43,12 @@
     - name: Install LXC
       xbps: name=lxc state=present
 
+    - name: Copy LXC configs
+      copy: src={{item.src}} dest={{item.dest}} remote_src=yes
+      with_items:
+        - {src: '/home/iaroki/dev/dotfiles/lxc/default.conf', dest: '/etc/lxc/default.conf'}
+        - {src: '/home/iaroki/dev/dotfiles/lxc/lxc.conf', dest: '/etc/lxc/lxc.conf'}
+
     - name: Install Vagrant
       xbps: name=vagrant state=present
 
