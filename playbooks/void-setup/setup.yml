@@ -21,11 +21,14 @@
         - xorg-fonts
         - xf86-video-ati
         - xf86-video-vesa
+        - xhost
+        - xset
         - ConsoleKit2
         - dbus-x11
         - i3
         - st
         - dmenu
+        - feh
         - gxkb
         - network-manager-applet
 
