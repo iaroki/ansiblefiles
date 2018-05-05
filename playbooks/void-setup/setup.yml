@@ -6,6 +6,17 @@
     - name: Update system
       xbps: upgrade=yes update_cache=yes
 
+    - name: Install Xorg packages
+      xbps: name={{ item }} state=present
+      with_items:
+        - xorg-minimal
+        - xorg-fonts
+        - xf86-video-ati
+        - xf86-video-vesa
+        - i3
+        - st
+        - dmenu
+
     - name: Install essential tools
       xbps: name={{item}} state=present
       with_items:
