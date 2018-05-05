@@ -9,8 +9,12 @@
     - name: Install essential tools
       xbps: name={{item}} state=present
       with_items:
-        - vim
-        - git
+
+# Must be preinstalled:
+#        - vim
+#        - git
+#        - python3
+
         - tree
         - wget  
         - htop
@@ -18,7 +22,6 @@
         - tmux
         - gxkb
         - dmenu
-        - python3
         - bash-completion
         - void-repo-nonfree
         - network-manager-applet
