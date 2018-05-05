@@ -26,6 +26,8 @@
         - i3
         - st
         - dmenu
+        - gxkb
+        - network-manager-applet
 
     - name: Install Audio packages
       xbps: name={{ item }} state=present
@@ -47,11 +49,8 @@
         - htop
         - scrot
         - tmux
-        - gxkb
-        - dmenu
         - bash-completion
         - void-repo-nonfree
-        - network-manager-applet
     
     - name: Pull dotfiles
       git: repo=https://github.com/iaroki/dotfiles dest=/home/iaroki/dev
