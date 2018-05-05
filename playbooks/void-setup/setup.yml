@@ -17,6 +17,12 @@
         - st
         - dmenu
 
+    - name: Install Audio packages
+      xbps: name={{ item }} state=present
+      with_items:
+        - alsa-utils
+        - pulseaudio
+
     - name: Install essential tools
       xbps: name={{item}} state=present
       with_items:
