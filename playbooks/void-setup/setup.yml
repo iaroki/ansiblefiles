@@ -6,6 +6,14 @@
     - name: Update system
       xbps: upgrade=yes update_cache=yes
 
+    - name: Disable unneeded Runit services
+      runit: name={{ item }} enabled=no
+      with_items:
+        - agetty-tty3
+        - agetty-tty4
+        - agetty-tty5
+        - agetty-tty6
+
     - name: Install Xorg packages
       xbps: name={{ item }} state=present
       with_items:
