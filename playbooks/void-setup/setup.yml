@@ -65,6 +65,9 @@
     - name: Install Docker
       xbps: name=docker state=present
 
+    - name: Create Docker config directory
+      file: src=/etc/docker state=directory mode=0755
+
     - name: Copy docker config
       copy: src=/home/iaroki/dev/dotfiles/docker/daemon.json dest=/etc/docker/daemon.json remote_src=yes
 
