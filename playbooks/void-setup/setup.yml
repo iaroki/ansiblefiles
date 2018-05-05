@@ -21,6 +21,8 @@
         - xorg-fonts
         - xf86-video-ati
         - xf86-video-vesa
+        - ConsoleKit2
+        - dbus-x11
         - i3
         - st
         - dmenu
