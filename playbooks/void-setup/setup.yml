@@ -32,6 +32,8 @@
         - gxkb
         - network-manager-applet
 
+# ENABLE NetworkManager, dbus
+
     - name: Install Audio packages
       xbps: name={{ item }} state=present
       with_items:
