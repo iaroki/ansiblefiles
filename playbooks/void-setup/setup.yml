@@ -31,6 +31,7 @@
         - feh
         - gxkb
         - network-manager-applet
+        - noto-fonts-cjk
 
 # ENABLE NetworkManager, dbus
 
