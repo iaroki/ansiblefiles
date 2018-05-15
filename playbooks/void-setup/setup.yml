@@ -55,6 +55,7 @@
         - htop
         - scrot
         - tmux
+        - p7zip
         - bash-completion
         - void-repo-nonfree
     
