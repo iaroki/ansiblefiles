@@ -1,0 +1,9 @@
+---
+- hosts: kubernetes
+  tasks:
+
+    - name: Update system
+      apt: name="*" state=latest update_cache=yes
+
+    - name: Install Docker
+      apt: name=docker.io state=present
