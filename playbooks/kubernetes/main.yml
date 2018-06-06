@@ -12,6 +12,12 @@
       selinux:
         state: disabled
 
+    - name: Create kubernetes sysctl.conf
+      file:
+        path: /etc/sysctl.conf.d/kubernetes.conf
+        state: touch
+        mode: 0644
+
     - name: Set net.bridge.bridge-nf-call-iptables to 1
       sysctl:
         name: net.bridge.bridge-nf-call-iptables
@@ -49,4 +55,3 @@
         name: kubelet
         state: started
         enabled: yes
-        
