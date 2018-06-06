@@ -3,7 +3,39 @@
   tasks:
 
     - name: Update system
-      apt: name="*" state=latest update_cache=yes
+      yum:
+        name: '*'
+        state: latest
+        update_cache: yes
+
+    - name: Disable SELinux
+      selinux:
+        state: disabled
+
+    - name: Set net.bridge.bridge-nf-call-iptables to 1
+      sysctl:
+        name: net.bridge.bridge-nf-call-iptables
+        value: 1
+        state: present
+        sysctl_file: /etc/sysctl.conf.d/kubernetes.conf
+        sysctl_set: yes
+        reload: yes
 
     - name: Install Docker
-      apt: name=docker.io state=present
+      yum:
+        name: docker.io
+        state: present
+
+    - name: Start Docker
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add kubernetes repo
+      yum_repository:
+        name: kubernetes
+        description: kubernetes repository
+        baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
+
+    - name: Install kubernetes
