@@ -14,7 +14,7 @@
 
     - name: Create kubernetes sysctl.conf
       file:
-        path: /etc/sysctl.conf.d/kubernetes.conf
+        path: /etc/sysctl.d/kubernetes.conf
         state: touch
         mode: 0644
 
@@ -23,7 +23,7 @@
         name: net.bridge.bridge-nf-call-iptables
         value: 1
         state: present
-        sysctl_file: /etc/sysctl.conf.d/kubernetes.conf
+        sysctl_file: /etc/sysctl.d/kubernetes.conf
         sysctl_set: yes
         reload: yes
 
