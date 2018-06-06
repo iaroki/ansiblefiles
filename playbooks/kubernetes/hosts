@@ -1,5 +1,5 @@
 [kubernetes]
-192.168.33.100
-192.168.33.101
-192.168.33.102
-192.168.33.103
+kube-master ansible_host=192.168.33.100 ansible_port=22 ansible_user=root
+kube-node1 ansible_host=192.168.33.101 ansible_port=22 ansible_user=root
+kube-node1 ansible_host=192.168.33.102 ansible_port=22 ansible_user=root
+kube-node1 ansible_host=192.168.33.103 ansible_port=22 ansible_user=root
