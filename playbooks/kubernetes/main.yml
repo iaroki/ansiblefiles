@@ -39,3 +39,7 @@
         baseurl: https://packages.cloud.google.com/yum/repos/kubernetes-el7-x86_64
 
     - name: Install kubernetes
+      yum:
+        name: kubelet, kubeadm, kubectl
+        state: present
+        update_cache: yes
