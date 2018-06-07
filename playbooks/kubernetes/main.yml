@@ -18,6 +18,11 @@
         state: stopped
         enabled: no
 
+    - name: Load br_netfilter module
+      modprobe:
+        name: br_netfilter
+        state: present
+
     - name: Create kubernetes sysctl.conf
       file:
         path: /etc/sysctl.d/kubernetes.conf
