@@ -18,11 +18,6 @@
         state: stopped
         enabled: no
 
-    - name: Load br_netfilter module
-      modprobe:
-        name: br_netfilter
-        state: present
-
     - name: Copy module-load conf
       copy:
         src: files/br_netfilter.conf
@@ -31,10 +26,17 @@
         group: root
         mode: 0644
 
-    - name: Create kubernetes sysctl.conf
-      file:
-        path: /etc/sysctl.d/kubernetes.conf
-        state: touch
+    - name: Load br_netfilter module
+      modprobe:
+        name: br_netfilter
+        state: present        
+
+    - name: Copy kubernetes sysctl.conf
+      copy:
+        src: files/kubernetes.conf
+        dest: /etc/sysctl.d/kubernetes.conf
+        owner: root
+        group: root
         mode: 0644
 
     - name: Set net.bridge.bridge-nf-call-iptables to 1
