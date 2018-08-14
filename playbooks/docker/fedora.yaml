@@ -1,0 +1,28 @@
+---
+- hosts: vagrant
+  tasks: 
+    - name: Add Docker CE repository
+      yum_repository:
+        name: Docker CE Stable
+        file: docker-ce
+        baseurl: https://download.docker.com/linux/fedora/$releasever/$basearch/stable
+        gpgkey: https://download.docker.com/linux/fedora/gpg
+        gpgcheck: yes
+        enabled: yes
+
+    - name: Install Docker
+      dnf:
+        name: docker-ce
+        state: present
+
+    - name: Enable Docker service
+      systemd:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add user to Docker group
+      user:
+        name: vagrant
+        groups: docker
+        append: yes
