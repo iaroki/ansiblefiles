@@ -1,64 +1,61 @@
 ---
-- hosts: stormey
+- hosts: localhost
+  connection: local
+  become: true
+  vars:
+    release: 31
   tasks:
-    - name: Install basic tools
-      dnf: name={{item}} state=installed
+    - name: Disable services
+      systemd:
+        name: "{{ item }}"
+        state: stopped
+        enabled: no
       with_items:
+        - dnf-makecache
+        - firewalld
+        - sssd
+        - abrtd
+        - lvm2-monitor
+        - dnfdaemon
+
+    - name: Clean packages
+      dnf:
+        name: "{{ packages }}"
+        state: absent
+      vars:
+        packages:
+        - geany
+        - dnfdragora
+        - xfburn
+        - gnumeric
+        - pidgin
+        - claws-mail
+        - transmission
+
+    - name: Install basic tools
+      dnf:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
         - vim
         - tmux
         - git
+        - podman
+        - ansible
         - dnf-plugins-core
-        - libselinux-python
-
-    - name: Enable Docker repo
-      command: dnf config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
-      
-    - name: Install Docker  
-      dnf: name=docker-ce state=installed
-
-    - name: Add user to docker group
-      user: name=hostmorke groups=docker append=yes
-
-    - name: Enable copr LXD
-      command: dnf copr enable ganto/lxd -y
-
-    - name: Enable copr LXC
-      command: dnf copr enable ganto/lxc -y
-
-    - name: Install LXD tools
-      dnf: name={{item}} state=installed
-      with_items:
-        - lxd
-        - lxd-client
-        - lxd-tools
-
-    - name: Add user to lxd group
-      user: name=hostmorke groups=lxd append=yes
-
-    - name: Set subuid
-      lineinfile: path=/etc/subuid line="root:1000000:65536"
-
-    - name: Set subgid
-      lineinfile: path=/etc/subgid line="root:1000000:65536"
-
-    - name: Enable Virtualbox repo
-      command: dnf config-manager --add-repo http://download.virtualbox.org/virtualbox/rpm/fedora/virtualbox.repo
-
-    - name: Install Virtualbox
-      dnf: name=VirtualBox-5.1 state=installed
-
-    - name: Enable RPMFusion
-      dnf: name={{item}} state=installed
-      with_items:
-        - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-26.noarch.rpm
-        - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-26.noarch.rpm
+        - mozilla-fira-mono-fonts
+        - https://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-{{ release }}.noarch.rpm
+        - https://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-{{ release }}.noarch.rpm
+        - https://releases.hashicorp.com/vagrant/2.2.6/vagrant_2.2.6_x86_64.rpm
 
     - name: Install media
-      dnf: name={{item}} state=installed
-      with_items:
+      dnf:
+        name: "{{ packages }}"
+        state: present
+      vars:
+        packages:
         - mpv
-        - cmus
         - ffmpeg
-        - obs-studio
         - rtmpdump
-        - unrar
+        - VirtualBox
