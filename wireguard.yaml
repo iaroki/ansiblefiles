@@ -1,0 +1,9 @@
+---
+
+- name: Provision Wireguard
+  hosts: wireguard
+  gather_facts: no
+  vars:
+    ansible_become: true
+  roles:
+    - role: wireguard
