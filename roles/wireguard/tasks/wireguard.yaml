@@ -13,10 +13,10 @@
     chdir: /etc/wireguard
 
 - name: Register Wireguard private key
-   shell:
-     cmd: cat /etc/wireguard/privatekey
-   register: server_private_key
-   ignore_errors: true
+  shell:
+    cmd: cat /etc/wireguard/privatekey
+  register: server_private_key
+  ignore_errors: true
 
 - name: Copy Wireguard config file
   template:
