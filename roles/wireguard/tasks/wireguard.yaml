@@ -15,7 +15,7 @@
 - name: Register Wireguard private key
   shell:
     cmd: cat /etc/wireguard/privatekey
-  register: server_private_key
+  register: server_private_key.stdout
   ignore_errors: true
 
 - name: Copy Wireguard config file
