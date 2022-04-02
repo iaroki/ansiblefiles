@@ -11,6 +11,7 @@
       umask 077
       wg genkey | tee privatekey | wg pubkey > publickey
     chdir: /etc/wireguard
+    creates: privatekey
 
 - name: Register Wireguard private key
   shell:
