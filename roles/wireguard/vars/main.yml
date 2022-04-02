@@ -1,0 +1,8 @@
+---
+
+server_ip: 10.10.10.1
+peers:
+  - private_ip: 10.10.10.10
+    public_key: I/G6znvsni/oLk37OZ5A5xaX8r+qZ8fMkJlX5rR1ejs=
+  - private_ip: 10.10.10.11
+    public_key: I/G6znvsni/oLk37OZ5A5xaX8r+qZ8fMkJlX5rR1ejs=

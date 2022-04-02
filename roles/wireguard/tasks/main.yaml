@@ -1,0 +1,4 @@
+---
+
+- include_tasks: system.yaml
+- include_tasks: wireguard.yaml
