@@ -19,6 +19,16 @@
   register: server_private_key
   ignore_errors: true
 
+- name: Register Wireguard public key
+  shell:
+    cmd: cat /etc/wireguard/publickey
+  register: server_public_key
+  ignore_errors: true
+
+- name: Print Wireguard public key
+  ansible.debug:
+    var: server_public_key
+
 - name: Copy Wireguard config file
   template:
     src: templates/wg0.conf.j2
