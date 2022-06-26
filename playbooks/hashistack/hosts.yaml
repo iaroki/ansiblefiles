@@ -1,0 +1,10 @@
+---
+
+all:
+  hosts:
+    hashistack:
+      ansible_host: localhost
+      ansible_port: 2222
+      ansible_user: vagrant
+      ansible_ssh_private_key_file: /Users/msytnyk/vagrant/hashistack/.vagrant/machines/default/vmware_desktop/private_key
+      ansible_become: true

@@ -1,0 +1,16 @@
+node_name = "consul-server"
+server = true
+datacenter = "homelab"
+data_dir = "/opt/consul/data"
+ui_config {
+  enabled = true
+}
+bind_addr = "127.0.0.1"
+addresses {
+  http = "0.0.0.0"
+}
+bootstrap_expect = 1
+connect {
+  enabled = true
+}
+encrypt = "{{ consul_gossip_key.stdout }}"

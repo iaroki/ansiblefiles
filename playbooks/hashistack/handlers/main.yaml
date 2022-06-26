@@ -1,0 +1,4 @@
+---
+
+- include: consul.yaml
+- include: nomad.yaml

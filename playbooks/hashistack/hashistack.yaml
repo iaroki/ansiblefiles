@@ -1,0 +1,140 @@
+---
+- hosts: hashistack
+  tasks:
+
+    - name: Install deps
+      ansible.builtin.apt:
+        state: present
+        update_cache: yes
+        pkg:
+          - vim
+          - tmux
+          - htop
+          - docker.io
+
+    - name: Make Data dirs
+      ansible.builtin.file:
+        path: /opt/{{ item }}
+        owner: root
+        group: root
+        mode: 0755
+        state: directory
+      loop:
+        - data
+
+    - name: Get Consul
+      ansible.builtin.get_url:
+        url: https://releases.hashicorp.com/consul/1.12.2/consul_1.12.2_linux_amd64.zip
+        dest: /tmp/consul.zip
+
+    - name: Install Consul
+      ansible.builtin.unarchive:
+        src: /tmp/consul.zip
+        dest: /usr/local/bin
+        remote_src: true
+        mode: 0744
+
+    - name: Make Consul dirs
+      ansible.builtin.file:
+        path: /opt/consul/{{ item }}
+        owner: root
+        group: root
+        mode: 0755
+        state: directory
+      loop:
+        - data
+        - conf
+        - consul.d
+
+    - name: Generate Consul gossip key
+      ansible.builtin.shell:
+        cmd: consul keygen > consul_gossip_key
+        chdir: /opt/consul/conf
+        creates: consul_gossip_key
+
+    - name: Register Consul gossip key
+      ansible.builtin.shell:
+        cmd: cat /opt/consul/conf/consul_gossip_key
+      register: consul_gossip_key
+      ignore_errors: true
+
+    - name: Copy Consul config file
+      template:
+        src: templates/consul.hcl.j2
+        dest: /opt/consul/consul.d/consul.hcl
+        owner: root
+        group: root
+        mode: 0600
+      notify: Restart Consul service
+
+    - name: Copy Consul service file
+      template:
+        src: templates/consul.service.j2
+        dest: /etc/systemd/system/consul.service
+        owner: root
+        group: root
+        mode: 0600
+      notify: Restart Consul service
+
+    - name: Start Consul service
+      systemd:
+        name: consul.service
+        state: started
+        enabled: true
+        daemon_reload: true
+
+    - name: Get Nomad
+      ansible.builtin.get_url:
+        url: https://releases.hashicorp.com/nomad/1.3.1/nomad_1.3.1_linux_amd64.zip
+        dest: /tmp/nomad.zip
+
+    - name: Install Nomad
+      ansible.builtin.unarchive:
+        src: /tmp/nomad.zip
+        dest: /usr/local/bin
+        remote_src: true
+        mode: 0744
+
+    - name: Make Nomad dirs
+      ansible.builtin.file:
+        path: /opt/nomad/{{ item }}
+        owner: root
+        group: root
+        mode: 0755
+        state: directory
+      loop:
+        - data
+        - conf
+        - jobs
+        - nomad.d
+
+    - name: Copy Nomad config files
+      template:
+        src: "templates/{{ item }}.hcl.j2"
+        dest: "/opt/nomad/nomad.d/{{ item }}.hcl"
+        owner: root
+        group: root
+        mode: 0600
+      loop:
+        - server
+        - client
+      notify: Restart Nomad service
+
+    - name: Copy Nomad service file
+      template:
+        src: templates/nomad.service.j2
+        dest: /etc/systemd/system/nomad.service
+        owner: root
+        group: root
+        mode: 0600
+      notify: Restart Nomad service
+
+    - name: Start Nomad service
+      systemd:
+        name: nomad.service
+        state: started
+        enabled: true
+        daemon_reload: true
+
+  handlers:
+    - include: handlers/main.yaml
