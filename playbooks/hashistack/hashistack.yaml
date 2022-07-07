@@ -1,7 +1,10 @@
 ---
 - hosts: hashistack
   vars:
-    arch: amd64
+    # arch: amd64
+    arch: arm64
+    # network_interface: eth0
+    network_interface: wlan0
     cni_version: 1.1.1
     consul_version: 1.12.2
     nomad_version: 1.3.1
@@ -136,6 +139,7 @@
       loop:
         - server
         - client
+        - docker
       notify: Restart Nomad service
 
     - name: Copy Nomad service file

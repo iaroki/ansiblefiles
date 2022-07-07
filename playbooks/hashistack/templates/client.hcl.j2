@@ -1,6 +1,6 @@
 client {
   enabled = true
-  network_interface = "eth0"
+  network_interface = "{{ network_interface }}"
   server_join {
     retry_join = [
       "127.0.0.1"
