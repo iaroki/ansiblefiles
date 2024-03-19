@@ -1,0 +1,5 @@
+homelab:
+  hosts:
+    wireguard:
+      ansible_user: vagrant
+      ansible_host: 10.0.0.11
