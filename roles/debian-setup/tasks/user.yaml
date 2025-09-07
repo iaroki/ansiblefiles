@@ -1,0 +1,7 @@
+---
+
+- name: "User groups configuration"
+  ansible.builtin.user:
+    name: "{{ user.name }}"
+    groups: "{{ user.groups }}"
+    append: true

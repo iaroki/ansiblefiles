@@ -1,0 +1,19 @@
+---
+
+- name: "Flathub flatpak repository remote configuration"
+  community.general.flatpak_remote:
+    name: "flathub"
+    flatpakrepo_url: "https://dl.flathub.org/repo/flathub.flatpakrepo"
+    method: "user"
+    state: "present"
+
+- name: "Install flatpak packages"
+  community.general.flatpak:
+    name: "{{ flatpak.install }}"
+    method: "user"
+    state: "present"
+
+- name: "Remove flatpak packages"
+  community.general.flatpak:
+    name: "{{ flatpak.remove }}"
+    state: "absent"

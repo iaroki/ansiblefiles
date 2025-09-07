@@ -1,0 +1,7 @@
+---
+
+- name: "Gnome configuration"
+  community.general.dconf:
+    key: "/org/gnome/desktop/input-sources/sources"
+    value: "[('xkb', 'us'), ('xkb', 'uk')]"
+    state: "present"

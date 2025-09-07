@@ -1,0 +1,62 @@
+---
+
+- name: "Provision Debian configuration"
+  hosts: "local"
+  gather_facts: false
+  roles:
+    - role: "debian-setup"
+  vars:
+    ansible_become: true
+    system:
+      hostname: "debian"
+      timezone: "Europe/Kyiv"
+    user:
+      name: "msytnyk"
+      groups: 
+        - "sudo"
+      packages:
+        install:
+          - "git"
+          - "vim"
+          - "tmux"
+          - "wget"
+          - "flatpak"
+          - "dconf-editor"
+          - "podman"
+          - "podman-compose"
+          - "starship"
+          - "distrobox"
+          - "python3-pip"
+          - "pulseaudio-utils"
+          - "pavucontrol"
+          - "zsh"
+          - "gnome-shell-extension-appindicator"
+          - "gnome-shell-extension-autohidetopbar"
+          - "gnome-shell-extension-blur-my-shell"
+          - "gnome-shell-extension-gpaste"
+          - "gnome-shell-extension-just-perfection"
+          - "gnome-shell-extension-gsconnect"
+          - "gnome-shell-extension-light-style"
+          #- "qemu/libvirt/virt-manager"
+
+        remove:
+          - "*fcitx*"
+          - "goldendict*"
+          - "libreoffice*"
+          - "anthy*"
+          - "*thai*"
+          - "*mozc*"
+          - "gnome-tour"
+          - "gnome-contacts"
+          - "evolution"
+          - "thunderbird"
+      flatpak:
+        install:
+          - "app.zen_browser.zen"
+          - "com.github.tchx84.Flatseal"
+          - "com.mattjakeman.ExtensionManager"
+          - "page.tesk.Refine"
+          - "dev.zed.Zed"
+          - "app.devsuite.Ptyxis"
+          - "io.bassi.Amberol"
+        remove: []

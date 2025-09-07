@@ -1,0 +1,9 @@
+---
+
+- name: "Hostname configuration"
+  ansible.builtin.hostname:
+    name: "{{ system.hostname }}"
+
+- name: "Timezone configuration"
+  community.general.timezone:
+    name: "{{ system.timezone }}

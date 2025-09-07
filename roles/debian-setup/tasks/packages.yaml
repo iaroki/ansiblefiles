@@ -1,0 +1,14 @@
+---
+
+- name: "Package install configuration"
+  apt:
+    name: "{{ packages.install }}"
+    state: "present"
+    update_cache: true
+
+- name: "Package remove configuration"
+  apt:
+    name: "{{ packages.remove }}"
+    state: "absent"
+    autoremove: true
+    purge: true
