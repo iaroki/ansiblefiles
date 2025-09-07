@@ -11,11 +11,11 @@
   community.general.flatpak:
     name: "{{ flatpak.remove }}"
     state: "absent"
-  when: "not packages.skip_remove"
+  when: "packages.enabled.remove"
 
 - name: "Install flatpak packages"
   community.general.flatpak:
     name: "{{ flatpak.install }}"
     method: "user"
     state: "present"
-  when: "not packages.skip_install"
+  when: "packages.enabled.install"

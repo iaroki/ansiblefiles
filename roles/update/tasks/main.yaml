@@ -5,3 +5,4 @@
     name: "*"
     state: "latest"
     update_cache: true
+  when: "update.enabled"

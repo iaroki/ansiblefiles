@@ -6,12 +6,12 @@
     state: "absent"
     autoremove: true
     purge: true
-  when: "not packages.skip_remove"
+  when: "packages.enabled.remove"
 
 - name: "Package install configuration"
   apt:
     name: "{{ packages.install }}"
     state: "present"
     update_cache: true
-  when: "not packages.skip_install"
+  when: "packages.enabled.install"
 
