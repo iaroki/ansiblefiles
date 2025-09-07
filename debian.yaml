@@ -23,6 +23,8 @@
       groups: 
         - "sudo"
     packages:
+      skip_install: true
+      skip_remove: false
       install:
         - "git"
         - "vim"
@@ -39,6 +41,9 @@
         - "python3-venv"
         - "pulseaudio-utils"
         - "pavucontrol"
+        - "7zip"
+        - "file-roller"
+        - "shotwell"
         - "zsh"
         - "gnome-shell-extension-appindicator"
         - "gnome-shell-extension-autohidetopbar"
@@ -50,17 +55,19 @@
         #- "qemu/libvirt/virt-manager"
 
       remove:
-        - "*fcitx*"
-        - "goldendict*"
+        - "fcitx5"
+        - "goldendict-ng"
         - "libreoffice*"
-        - "anthy*"
-        - "*thai*"
+        - "anthy"
+        - "xiterm*"
         - "*mozc*"
         - "gnome-tour"
-        - "gnome-contacts"
-        - "evolution"
         - "thunderbird"
+        #- "evolution"  # removes gnome
+        #- "gnome-contacts"
     flatpak:
+      skip_install: true
+      skip_remove: true
       install:
         - "app.zen_browser.zen"
         - "com.github.tchx84.Flatseal"
