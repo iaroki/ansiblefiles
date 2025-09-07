@@ -6,4 +6,4 @@
 
 - name: "Timezone configuration"
   community.general.timezone:
-    name: "{{ system.timezone }}
+    name: "{{ system.timezone }}"
