@@ -57,6 +57,7 @@
         - "gnome-shell-extension-just-perfection"
         - "gnome-shell-extension-gsconnect"
         - "gnome-shell-extension-light-style"
+        - "fonts-firacode"
         #- "qemu/libvirt/virt-manager"
 
       remove:
