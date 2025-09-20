@@ -5,16 +5,16 @@
   connection: "local"
   gather_facts: false
   roles:
-    - {role: "update",      tags: "update"}
-    - {role: "system",      tags: "system"}
-    - {role: "user",        tags: "user"}
-    - {role: "packages",    tags: "packages"}
-    - {role: "flatpak",     tags: "flatpak"}
-    - {role: "gnome",       tags: "gnome"}
-    - {role: "dotfiles",    tags: "dotfiles"}
-    - {role: "development", tags: "development"}
+    - {role: "update",      tags: "update", become: true }
+    - {role: "system",      tags: "system", become: true }
+    - {role: "user",        tags: "user", become: true }
+    - {role: "packages",    tags: "packages", become: true }
+    - {role: "flatpak",     tags: "flatpak", become: true }
+    - {role: "gnome",       tags: "gnome", become: false }
+    - {role: "dotfiles",    tags: "dotfiles", become: false }
+    - {role: "development", tags: "development", become: false }
   vars:
-    ansible_become: true
+    # ansible_become: true
     update:
       enabled: true
     system:
@@ -22,7 +22,7 @@
       timezone: "Europe/Kyiv"
     user:
       name: "msytnyk"
-      groups: 
+      groups:
         - "sudo"
     packages:
       enabled:
