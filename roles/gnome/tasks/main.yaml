@@ -2,6 +2,163 @@
 
 - name: "Gnome configuration"
   community.general.dconf:
-    key: "/org/gnome/desktop/input-sources/sources"
-    value: "[('xkb', 'us'), ('xkb', 'uk')]"
+    key: "{{ item.key }}"
+    value: "{{ item.value }}"
     state: "present"
+  loop:
+    - key: "/org/gnome/desktop/interface/show-battery-percentage"
+      value: true
+    - key: "/org/gnome/desktop/interface/clock-show-weekday"
+      value: true
+    - key: "/org/gnome/desktop/interface/enable-animations"
+      value: false
+    - key: "/org/gnome/desktop/interface/enable-hot-corners"
+      value: false
+    - key: "/org/gnome/desktop/interface/locate-pointer"
+      value: false
+    - key: "/org/gnome/desktop/input-sources/sources"
+      value: "[('xkb', 'us'), ('xkb', 'ru'), ('xkb', 'ua+winkeys')]"
+    - key: "/org/gnome/desktop/input-sources/sources/per-window"
+      value: true
+    - key: "/org/gnome/desktop/input-sources/sources/show-all-sources"
+      value: true
+    - key: "/org/gnome/desktop/datetime/automatic-timezone"
+      value: true
+    - key: "/org/gnome/desktop/notifications/show-banners"
+      value: false
+    - key: "/org/gnome/desktop/notifications/show-in-lock-screen"
+      value: false
+    - key: "/org/gnome/desktop/privacy/remember-recent-files"
+      value: false
+    - key: "/org/gnome/desktop/sound/event-sounds"
+      value: false
+    - key: "/org/gnome/desktop/wm/keybindings/close"
+      value: "[ '<Alt>q' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-1"
+      value: "[ '<Shift><Alt>1' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-2"
+      value: "[ '<Shift><Alt>2' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-3"
+      value: "[ '<Shift><Alt>3' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-4"
+      value: "[ '<Shift><Alt>4' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-5"
+      value: "[ '<Shift><Alt>5' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-6"
+      value: "[ '<Shift><Alt>6' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-7"
+      value: "[ '<Shift><Alt>7' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-8"
+      value: "[ '<Shift><Alt>8' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/move-to-workspace-9"
+      value: "[ '<Shift><Alt>9' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-1"
+      value: "[ '<Alt>1' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-2"
+      value: "[ '<Alt>2' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-3"
+      value: "[ '<Alt>3' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-4"
+      value: "[ '<Alt>4' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-5"
+      value: "[ '<Alt>5' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-6"
+      value: "[ '<Alt>6' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-7"
+      value: "[ '<Alt>7' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-8"
+      value: "[ '<Alt>8' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-9"
+      value: "[ '<Alt>9' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-applications"
+      value: "[ '' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-applications-backward"
+      value: "[ '' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-windows"
+      value: "[ '<Alt>Tab' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/switch-windows-backward"
+      value: "[ '<Shift><Alt>Tab' ]"
+    - key: "/org/gnome/desktop/wm/keybindings/toggle-maximized"
+      value: "[ '<Alt>m' ]"
+    - key: "/org/gnome/desktop/wm/preferences/mouse-button-modifier"
+      value: "'<Alt>'"
+    - key: "/org/gnome/desktop/wm/preferences/num-workspaces"
+      value: 9
+    - key: "/org/gnome/desktop/wm/preferences/resize-with-right-button"
+      value: true
+    - key: "/org/gnome/desktop/wm/preferences/workspace-names"
+      value: "[ '1', '2', '3', '4', '5', '6', '7', '8', '9' ]"
+    - key: "/org/gnome/mutter/attach-modal-dialogs"
+      value: true
+    - key: "/org/gnome/mutter/attach-modal-dialogs"
+      value: true
+    - key: "/org/gnome/mutter/center-new-windows"
+      value: true
+    - key: "/org/gnome/mutter/dynamic-workspaces"
+      value: false
+    - key: "/org/gnome/mutter/edge-tiling"
+      value: true
+    - key: "/org/gnome/mutter/focus-change-on-pointer-rest"
+      value: true
+    - key: "/org/gnome/mutter/workspaces-only-on-primary"
+      value: false
+    - key: "/org/gnome/nautilus/list-view/use-tree-view"
+      value: true
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+      value: "[ '/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/' ]"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+      value: "'<Shift><Alt>Return'"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+      value: "'ghostty'"
+    - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+      value: "'terminal'"
+    - key: "/org/gnome/settings-daemon/plugins/power/idle-dim"
+      value:  false
+    - key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
+      value: "'nothing'"
+    - key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-timeout"
+      value: 1800
+    - key: "/org/gnome/shell/keybindings/show-screenshot-ui"
+      value: "[ '<Alt><Super>p' ]"
+    - key: "/org/gnome/shell/keybindings/toggle-application-view"
+      value: "[ '<Alt>r' ]"
+    - key: "/org/gnome/shell/app-switcher/current-workspace-only"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/accessibility-menu"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/activities-button"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/animation"
+      value: 0
+    - key: "/org/gnome/shell/extensions/just-perfection/clock-menu"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/dash-icon-size"
+      value: 0
+    - key: "/org/gnome/shell/extensions/just-perfection/keyboard-layout"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/panel"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/panel-in-overview"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/power-icon"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/ripple-box"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/search"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/show-apps-button"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/startup-status"
+      value: 0
+    - key: "/org/gnome/shell/extensions/just-perfection/theme"
+      value: false
+    - key: "/org/gnome/shell/extensions/just-perfection/window-demands-attention-focus"
+      value: false
+    - key: "/org/gnome/shell/extensions/just-perfection/window-picker-icon"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/workspace"
+      value: true
+    - key: "/org/gnome/shell/extensions/just-perfection/workspace-popup"
+      value: false
+    - key: "/org/gnome/shell/extensions/just-perfection/workspaces-in-app-grid"
+      value: true
