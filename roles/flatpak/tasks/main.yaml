@@ -10,10 +10,10 @@
   community.general.flatpak:
     name: "{{ flatpak.remove }}"
     state: "absent"
-  when: "packages.enabled.remove"
+  when: "flatpak.enabled.remove"
 
 - name: "Install flatpak packages"
   community.general.flatpak:
     name: "{{ flatpak.install }}"
     state: "present"
-  when: "packages.enabled.install"
+  when: "flatpak.enabled.install"
