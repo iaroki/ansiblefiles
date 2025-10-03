@@ -49,6 +49,7 @@
         - "file-roller"
         - "shotwell"
         - "zsh"
+        - "fzf"
         - "gnome-software-plugin-flatpak"
         - "gnome-software-plugin-fwupd"
         - "gnome-shell-extension-appindicator"
