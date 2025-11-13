@@ -109,11 +109,11 @@
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
       value: "'<Shift><Alt>Return'"
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
-      value: "'ghostty'"
+      value: "'alacritty'"
     - key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
       value: "'terminal'"
     - key: "/org/gnome/settings-daemon/plugins/power/idle-dim"
-      value:  false
+      value: false
     - key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-ac-type"
       value: "'nothing'"
     - key: "/org/gnome/settings-daemon/plugins/power/sleep-inactive-battery-timeout"
