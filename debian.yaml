@@ -60,7 +60,8 @@
         - "gnome-shell-extension-gsconnect"
         - "gnome-shell-extension-light-style"
         - "alacritty"
-        - "fonts-firacode"
+        - "emacs-pgtk"
+        - "emacs-libvterm"
         #- "qemu/libvirt/virt-manager"
 
       remove:
@@ -72,6 +73,7 @@
         - "*mozc*"
         - "gnome-tour"
         - "thunderbird"
+        - "fonts-firacode"  # managed by brew
         #- "evolution"  # removes gnome
         #- "gnome-contacts"
     flatpak:
