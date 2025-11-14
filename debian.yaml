@@ -6,9 +6,9 @@
   gather_facts: false
   roles:
     - {role: "update",      tags: "update", become: true }
+    - {role: "packages",    tags: "packages", become: true }
     - {role: "system",      tags: "system", become: true }
     - {role: "user",        tags: "user", become: true }
-    - {role: "packages",    tags: "packages", become: true }
     - {role: "flatpak",     tags: "flatpak", become: false }
     - {role: "gnome",       tags: "gnome", become: false }
     - {role: "dotfiles",    tags: "dotfiles", become: false }
@@ -24,6 +24,9 @@
       name: "msytnyk"
       groups:
         - "sudo"
+        - "keyd"
+        - "kvm"
+        - "libvirt"
     packages:
       enabled:
         install: true
@@ -49,6 +52,8 @@
         - "file-roller"
         - "shotwell"
         - "zsh"
+        - "zsh-autosuggestions"
+        - "zsh-syntax-highlighting"
         - "fzf"
         - "gnome-software-plugin-flatpak"
         - "gnome-software-plugin-fwupd"
@@ -59,10 +64,18 @@
         - "gnome-shell-extension-just-perfection"
         - "gnome-shell-extension-gsconnect"
         - "gnome-shell-extension-light-style"
+        - "remmina"
+        - "remmina-plugin-rdp"
+        - "remmina-plugin-vnc"
         - "alacritty"
         - "emacs-pgtk"
         - "emacs-libvterm"
-        #- "qemu/libvirt/virt-manager"
+        - "keyd"
+        - "qemu-kvm"
+        - "libvirt-daemon-system"
+        - "libvirt-clients"
+        - "bridge-utils"
+        - "virt-manager"
 
       remove:
         - "fcitx5"
@@ -86,6 +99,9 @@
         - "com.mattjakeman.ExtensionManager"
         - "page.tesk.Refine"
         - "dev.zed.Zed"
-        - "app.devsuite.Ptyxis"
         - "io.bassi.Amberol"
-      remove: []
+        - "com.slack.Slack"
+        - "us.zoom.Zoom"
+        - "io.dbeaver.DBeaverCommunity"
+      remove:
+        - "app.devsuite.Ptyxis"
