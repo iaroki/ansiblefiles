@@ -16,6 +16,8 @@
         - "lazygit"
         - "gnupg"
         - "zsh"
+        - "zsh-autosuggestions"
+        - "zsh-syntax-highlighting"
         - "starship"
         - "tmux"
         - "neovim"
