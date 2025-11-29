@@ -32,7 +32,10 @@
         - "btop"
         - "mosh"
         - "sshpass"
-        - "gopass"
+        - "pass"
+        - "pass-otp"
+        - "zbar"
+        - "tlrc"  # tldr
         - "just"
         - "go"
         - "gopls"

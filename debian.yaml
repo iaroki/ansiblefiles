@@ -76,6 +76,9 @@
         - "libvirt-clients"
         - "bridge-utils"
         - "virt-manager"
+        - "scdaemon"
+        - "pcscd"
+        - "yubikey-personalization"
 
       remove:
         - "fcitx5"
