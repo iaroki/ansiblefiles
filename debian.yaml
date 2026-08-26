@@ -81,8 +81,12 @@
         - "scdaemon"
         - "pcscd"
         - "yubikey-personalization"
+        - "age"
+        - "oathtool"
 
       remove:
+        - "pass"
+        - "pass-otp"
         - "fcitx5"
         - "goldendict-ng"
         - "libreoffice*"
